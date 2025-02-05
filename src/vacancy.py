@@ -4,7 +4,7 @@ class Vacancy:
     salary: str
     description: str
 
-    __slots__ = ('vacancy_name', 'vacancy_url', 'salary', 'description')
+    __slots__ = ("vacancy_name", "vacancy_url", "salary", "description")
 
     def __init__(self, vacancy_name, vacancy_url, salary, description):
         self.vacancy_name = vacancy_name
@@ -16,14 +16,14 @@ class Vacancy:
     def __validate(self):
         if not isinstance(self.vacancy_name, str) or not self.vacancy_name:
             raise ValueError("Название вакансии должно быть указано")
-        if not isinstance(self.vacancy_url, str) or 'http' not in self.vacancy_url:
+        if not isinstance(self.vacancy_url, str) or "http" not in self.vacancy_url:
             raise ValueError("Ссылка на вакансию должна быть корректной URL.")
         if not isinstance(self.salary, str):
             raise ValueError("Зарплата должна быть указана строкой")
         if not isinstance(self.description, str):
             raise ValueError("Описание должно быть строкой.")
         if not self.salary:
-            self.salary = 'Зарплата не указана'
+            self.salary = "Зарплата не указана"
 
     def __lt__(self, other):
         if not isinstance(other, Vacancy):
@@ -34,6 +34,3 @@ class Vacancy:
         if not isinstance(other, Vacancy):
             return NotImplemented
         return self.salary > other.salary
-
-
-
