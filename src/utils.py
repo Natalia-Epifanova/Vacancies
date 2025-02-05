@@ -9,13 +9,15 @@ def type_of_salary(vacancy: dict) -> str:
             salary_str = f"{salary.get('from')}"
         elif salary.get("to") is not None:
             salary_str = f"{salary.get('to')}"
+    elif isinstance(vacancy.get("salary"), str):
+        salary_str = vacancy.get("salary")
     return salary_str
 
 
 def type_of_description(vacancy: dict) -> str:
     description_str = "Нет информации о требованиях и обязанностях"
-    description = vacancy.get("snippet")
-    if isinstance(description, dict) and description is not None:
+    if isinstance(vacancy.get("snippet"), dict) and vacancy.get("snippet") is not None:
+        description = vacancy.get("snippet")
         if description.get("requirement") is not None and description.get("responsibility") is not None:
             description_str = (
                 f"Требования: {description.get('requirement')}. \n" f"Обязанности: {description.get('responsibility')}"
@@ -24,4 +26,8 @@ def type_of_description(vacancy: dict) -> str:
             description_str = f"Требования: {description.get('requirement')}."
         elif description.get("responsibility") is not None:
             description_str = f"Обязанности: {description.get('responsibility')}"
+    elif isinstance(vacancy.get("snippet"), str):
+        description_str = vacancy.get("snippet")
+
     return description_str
+

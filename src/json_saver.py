@@ -1,5 +1,4 @@
 import json
-from typing import List, Dict
 
 from src.utils import type_of_salary, type_of_description
 from src.vacancy import Vacancy
@@ -9,7 +8,7 @@ from src.work_with_files import WorkWithFiles
 class JSONSaver(WorkWithFiles):
 
     def __init__(self, filename="../data/vacancies.json"):
-        self.filename = filename
+        self.__filename = filename
         self.vacancies_list = []
 
     def __vacancies_in_list(self):
@@ -35,13 +34,14 @@ class JSONSaver(WorkWithFiles):
             "salary": vacancy.salary,
             "snippet": vacancy.description,
         }
-        list_of_vacancies.append(new_vac)
-        with open(self.filename, "w") as file:
+        if new_vac not in list_of_vacancies:
+            list_of_vacancies.append(new_vac)
+        with open(self.__filename, "w") as file:
             json.dump(list_of_vacancies, file, ensure_ascii=False, indent=4)
 
     def read_data(self):
         try:
-            with open(self.filename, "r") as json_file:
+            with open(self.__filename, "r") as json_file:
                 data = json.load(json_file)
             for vacancy_data in data:
                 next_vacancy = Vacancy(
@@ -53,12 +53,22 @@ class JSONSaver(WorkWithFiles):
                 self.vacancies_list.append(next_vacancy)
             return self.vacancies_list
         except FileNotFoundError:
-            print(f"Файл {self.filename} не найден")
+            print(f"Файл {self.__filename} не найден")
         except json.JSONDecodeError:
-            print(f"Ошибка декодирования JSON в файле {self.filename}. Убедитесь, что файл содержит корректный JSON.")
+            print(f"Ошибка декодирования JSON в файле {self.__filename}. Убедитесь, что файл содержит корректный JSON.")
 
     def delete_vacancy(self, vacancy):
         pass
+
+    @property
+    def filename(self) -> str:
+        """Метод-геттер"""
+        return self.__filename
+
+    @filename.setter
+    def filename(self, new_filename: str) -> None:
+        """Метод-сеттер"""
+        self.__filename = new_filename
 
 
 vac2 = Vacancy(
