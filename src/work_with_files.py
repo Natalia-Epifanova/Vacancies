@@ -1,23 +1,23 @@
 from abc import ABC, abstractmethod
+from typing import Any
+
+from src.vacancy import Vacancy
 
 
 class WorkWithFiles(ABC):
     """Абстрактный класс для работы с файлами"""
 
     @abstractmethod
-    def add_vacancy(self, vacancy):
+    def add_vacancy(self, vacancy: Vacancy) -> None:
+        """Абстрактный метод для добавления вакансии в файл"""
         pass
 
     @abstractmethod
-    def read_data(self):
+    def read_data(self) -> Any:
+        """Абстрактный метод для чтения данных из файла"""
         pass
 
     @abstractmethod
-    def delete_vacancy(self, vacancy):
+    def delete_vacancy(self, vacancy: Vacancy) -> None:
+        """Абстрактный метод для удаления вакансии из файла"""
         pass
-
-
-# Определить абстрактный класс, который обязывает реализовать методы для добавления вакансий в файл,
-# получения данных из файла по указанным критериям и удаления информации о вакансиях. Создать класс
-# для сохранения информации о вакансиях в JSON-файл. Дополнительно, по желанию, можно реализовать классы
-# для работы с другими форматами, например с CSV- или Excel-файлом, с TXT-файлом.
