@@ -20,7 +20,7 @@ class Vacancy:
         self.__validate()
 
     def __validate(self) -> None:
-        """Метод для валдации данных"""
+        """Метод для валидации данных"""
         if not isinstance(self.vacancy_name, str) or not self.vacancy_name:
             raise ValueError("Название вакансии должно быть указано")
         if not isinstance(self.vacancy_url, str) or "http" not in self.vacancy_url:
