@@ -1,17 +1,17 @@
 import json
 from typing import Any
 
-from src.utils import type_of_description, type_of_salary, dict_to_vac, vac_to_dict
+from src.utils import dict_to_vac, vac_to_dict
 from src.vacancy import Vacancy
 from src.work_with_files import WorkWithFiles
 
 
 class JSONSaver(WorkWithFiles):
     """Класс для работы с JSON файлами"""
-    filename: str
+
     vacancies_list: list
 
-    def __init__(self, filename: str="data/vacancies.json") -> None:
+    def __init__(self, filename: str = "data/vacancies.json") -> None:
         """Инициализация класса"""
         self.__filename = filename
         self.vacancies_list = []
@@ -54,7 +54,6 @@ class JSONSaver(WorkWithFiles):
         """Метод для удаления вакансии из файла"""
         pass
 
-
     @property
     def filename(self) -> Any:
         """Метод-геттер для получения пути сохранения файла с вакансиями"""
@@ -64,20 +63,3 @@ class JSONSaver(WorkWithFiles):
     def filename(self, new_filename: str) -> None:
         """Метод-сеттер для изменения пути сохранения файла с вакансиями"""
         self.__filename = new_filename
-
-#
-# vac2 = Vacancy(
-#     "Python Developer", "<https://hh.ru/vacancy/123456>", "100 000-150 000 руб.", "Требования: опыт работы от 3 лет..."
-# )
-# vac1 = Vacancy(
-#     "Python Developer_1",
-#     "<https://hh.ru/vacancy/123456>",
-#     "100 000-180 000 руб.",
-#     "Требования: опыт работы от 3 лет...",
-# )
-#
-# # # Сохранение информации о вакансиях в файл
-# json_saver = JSONSaver()
-#
-# json_saver.add_vacancy(vac1)
-# # json_saver.delete_vacancy(vac)

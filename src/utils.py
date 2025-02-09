@@ -44,12 +44,12 @@ def type_of_description(vacancy: dict) -> str:
     return description_str
 
 
-def get_min_salary(salary_str:str) -> Any:
+def get_min_salary(salary_str: str) -> Any:
     """Извлекает минимальную зарплату из строки"""
-    match = re.search(r'(\d+)', salary_str)
+    match = re.search(r"(\d+)", salary_str)
     if match:
         return int(match.group(1))
-    return float('inf')
+    return float("inf")
 
 
 def dict_to_vac(vacancy_dict: dict) -> Vacancy:
@@ -59,15 +59,15 @@ def dict_to_vac(vacancy_dict: dict) -> Vacancy:
         vacancy_dict["alternate_url"],
         type_of_salary(vacancy_dict),
         type_of_description(vacancy_dict),
-        )
+    )
     return remade_vacancy
 
 
 def vac_to_dict(vac: Vacancy) -> dict:
     remade_vacancy = {
-            "name": vac.vacancy_name,
-            "alternate_url": vac.vacancy_url,
-            "salary": vac.salary,
-            "snippet": vac.description,
-        }
+        "name": vac.vacancy_name,
+        "alternate_url": vac.vacancy_url,
+        "salary": vac.salary,
+        "snippet": vac.description,
+    }
     return remade_vacancy
