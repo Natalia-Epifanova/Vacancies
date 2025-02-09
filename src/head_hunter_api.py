@@ -27,12 +27,15 @@ class HeadHunterAPI(APIRequest):
             return response
         else:
             print(f"Ошибка при получении вакансий: {response.status_code}")
+            return None
 
     def get_vacancies(self, keyword: str) -> Any:
         """Метод возвращает вакансии с HH по API"""
         self.__params["text"] = keyword
         while self.__params.get("page") <= 20:
             response = self._APIRequest__api_connect()
+            if response is None:
+                return []
             vacancies = response.json()["items"]
             self.vacancies.extend(vacancies)
             self.__params["page"] += 1
