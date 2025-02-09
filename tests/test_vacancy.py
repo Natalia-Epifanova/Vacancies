@@ -24,20 +24,24 @@ def test_vacancy_validate_wrong_salary():
     with pytest.raises(ValueError):
         Vacancy("Python Developer", "https://hh.ru/vacancy/123456", 120000, "Требования: опыт работы от 3 лет...")
 
+
 def test_vacancy_validate_wrong_description():
     with pytest.raises(ValueError):
         Vacancy("Python Developer", "https://hh.ru/vacancy/123456", "100000 - 150000 руб.", [12, 34, 5])
 
+
 def test_vacancy_validate_missing_salary():
-    vac = Vacancy("Python Developer", "https://hh.ru/vacancy/123456", '', "Требования: опыт работы от 3 лет...")
-    vac.salary = 'Зарплата не указана'
+    vac = Vacancy("Python Developer", "https://hh.ru/vacancy/123456", "", "Требования: опыт работы от 3 лет...")
+    vac.salary = "Зарплата не указана"
 
 
 def test_vacancy_lt(first_vacancy, second_vacancy):
     assert first_vacancy < second_vacancy
 
+
 def test_vacancy_gt(first_vacancy, second_vacancy):
     assert second_vacancy > first_vacancy
+
 
 def test_vacancy_lt_not_a_vacancy(first_vacancy):
     with pytest.raises(TypeError):
@@ -46,6 +50,7 @@ def test_vacancy_lt_not_a_vacancy(first_vacancy):
         first_vacancy < None
     with pytest.raises(TypeError):
         first_vacancy < 123
+
 
 def test_vacancy_gt_not_a_vacancy(second_vacancy):
     with pytest.raises(TypeError):

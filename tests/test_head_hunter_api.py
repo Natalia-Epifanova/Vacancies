@@ -15,6 +15,7 @@ def test_head_hunter_api_connect(mock_get, two_vacs_from_hh):
     assert vacancies[0]["name"] == "Java-разработчик"
     assert vacancies[1]["name"] == "Python-разработчик"
 
+
 @patch("src.head_hunter_api.requests.get")
 def test_head_hunter_api_connect_no_response(mock_get):
     mock_get.return_value.status_code = 400
