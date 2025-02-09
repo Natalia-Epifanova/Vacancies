@@ -1,5 +1,6 @@
 import pytest
 
+from src.json_saver import JSONSaver
 from src.vacancy import Vacancy
 
 
@@ -78,3 +79,8 @@ def vacancy_half_of_params_2():
             },
             "alternate_url": "https://hh.ru/vacancy/93353083"
             }
+
+
+@pytest.fixture()
+def json_saver_for_test():
+    return JSONSaver()

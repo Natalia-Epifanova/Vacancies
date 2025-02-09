@@ -54,6 +54,5 @@ def test_get_min_salary_no_digits():
 
 
 def test_get_min_salary_empty_string():
-    # Тестируем пустую строку
     result = get_min_salary("")
     assert result == float("inf")
