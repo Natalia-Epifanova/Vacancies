@@ -53,7 +53,7 @@ def get_min_salary(salary_str: str) -> Any:
 
 
 def dict_to_vac(vacancy_dict: dict) -> Vacancy:
-    """Метод для преобразования словаря в объект класс Vacancy"""
+    """Функция для преобразования словаря в объект класс Vacancy"""
     remade_vacancy = Vacancy(
         vacancy_dict["name"],
         vacancy_dict["alternate_url"],
@@ -64,6 +64,7 @@ def dict_to_vac(vacancy_dict: dict) -> Vacancy:
 
 
 def vac_to_dict(vac: Vacancy) -> dict:
+    """Функция для преобразования объекта класса Vacancy  в словарь"""
     remade_vacancy = {
         "name": vac.vacancy_name,
         "alternate_url": vac.vacancy_url,
