@@ -6,7 +6,7 @@ class APIRequest(ABC):
     """Абстрактный класс для работы с API сервиса с вакансиями"""
 
     @abstractmethod
-    def __api_connect(self) -> Any:
+    def _api_connect(self) -> Any:
         """Абстрактный метод для подключения по API"""
         pass
 

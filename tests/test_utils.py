@@ -1,4 +1,5 @@
-from src.utils import dict_to_vac, get_min_salary, type_of_description, type_of_salary, vac_to_dict
+from src.utils import (dict_to_vac, get_min_salary, is_valid_salary_range, type_of_description, type_of_salary,
+                       vac_to_dict)
 
 
 def test_vac_to_dict(first_vacancy):
@@ -75,3 +76,11 @@ def test_get_min_salary_empty_string():
     """Тест функции для выделения минимальной зарплаты, когда строка пустая"""
     result = get_min_salary("")
     assert result == float("inf")
+
+
+def test_is_valid_salary_range():
+    """Тест функции для проверки соответствия строки формату 'число-число'."""
+    result = is_valid_salary_range("1000")
+    assert result is False
+    result = is_valid_salary_range("10000-100000")
+    assert result is True

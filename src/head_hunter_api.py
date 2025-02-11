@@ -20,7 +20,7 @@ class HeadHunterAPI(APIRequest):
         self.__params = {"text": "", "page": 0, "per_page": 100}
         self.vacancies = []
 
-    def _APIRequest__api_connect(self) -> Any:
+    def _api_connect(self) -> Any:
         """Метод для отправки запроса по API"""
         response = requests.get(self.__url, headers=self.__headers, params=self.__params)
         if response.status_code == 200:
@@ -33,7 +33,7 @@ class HeadHunterAPI(APIRequest):
         """Метод возвращает вакансии с HH по API"""
         self.__params["text"] = keyword
         while self.__params.get("page") <= 20:
-            response = self._APIRequest__api_connect()
+            response = self._api_connect()
             if response is None:
                 return []
             vacancies = response.json()["items"]

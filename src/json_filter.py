@@ -27,14 +27,15 @@ class JSONFilter:
     def filter_vacancies(self, list_of_keywords: list) -> List[Dict]:
         """Метод для фильтрации вакансий по ключевым словам"""
         filtered_vacancies = []
-        for vacancy in self.vacancies_list:
-            if any(
-                keyword.lower() in vacancy.vacancy_name.lower() or keyword.lower() in vacancy.description.lower()
-                for keyword in list_of_keywords
-            ):
-                filtered_vacancies.append(vacancy)
-            self.vacancies_list = filtered_vacancies
-        return filtered_vacancies
+        if list_of_keywords:
+            for vacancy in self.vacancies_list:
+                if any(
+                    keyword.lower() in vacancy.vacancy_name.lower() or keyword.lower() in vacancy.description.lower()
+                    for keyword in list_of_keywords
+                ):
+                    filtered_vacancies.append(vacancy)
+                self.vacancies_list = filtered_vacancies
+        return self.vacancies_list
 
     def get_vacancies_by_salary(self, min_salary: float, max_salary: float) -> List[Dict]:
         """Метод для фильтрации вакансий по диапазону зарплат"""
@@ -53,7 +54,8 @@ class JSONFilter:
         self.vacancies_list = sorted_vacancies
         return sorted_vacancies
 
-    def get_top_vacancies(self, top_number: int) -> List[Dict]:
+    def get_top_vacancies(self, top_number: int | str) -> List[Dict]:
         """Метод для получения топ N вакансий"""
-        self.vacancies_list = self.vacancies_list[:top_number]
+        if isinstance(top_number, int):
+            self.vacancies_list = self.vacancies_list[:top_number]
         return self.vacancies_list

@@ -2,7 +2,6 @@ import json
 from unittest.mock import mock_open, patch
 
 from src.json_saver import JSONSaver
-from src.utils import vac_to_dict
 
 
 @patch(

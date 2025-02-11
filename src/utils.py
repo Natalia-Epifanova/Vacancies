@@ -72,3 +72,9 @@ def vac_to_dict(vac: Vacancy) -> dict:
         "snippet": vac.description,
     }
     return remade_vacancy
+
+
+def is_valid_salary_range(salary_range: str) -> bool:
+    """Проверяет, соответствует ли строка формату 'число-число'."""
+    pattern = r"^\d+-\d+$"
+    return re.match(pattern, salary_range) is not None

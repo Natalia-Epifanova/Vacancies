@@ -20,9 +20,10 @@ class JSONSaver(WorkWithFiles):
         """Метод для получения вакансий в виде списка в нужном формате"""
         existing_vacancies = self.read_data()
         new_list = []
-        for vac in existing_vacancies:
-            data = vac_to_dict(vac)
-            new_list.append(data)
+        if existing_vacancies:
+            for vac in existing_vacancies:
+                data = vac_to_dict(vac)
+                new_list.append(data)
 
         self.vacancies_list = new_list
 
