@@ -52,7 +52,16 @@ class JSONSaver(WorkWithFiles):
 
     def delete_vacancy(self, vacancy: Vacancy) -> None:
         """Метод для удаления вакансии из файла"""
-        pass
+        self.__vacancies_in_list()  # Загрузить текущий список вакансий
+        list_of_vacancies = self.vacancies_list
+        vacancy_dict = vac_to_dict(vacancy)
+        if vacancy_dict in list_of_vacancies:
+            list_of_vacancies.remove(vacancy_dict)
+            with open(self.__filename, "w") as file:
+                json.dump(list_of_vacancies, file, ensure_ascii=False, indent=4)
+            print(f"Вакансия {vacancy_dict['name']} удалена.")
+        else:
+            print("Вакансия не найдена.")
 
     @property
     def filename(self) -> Any:
